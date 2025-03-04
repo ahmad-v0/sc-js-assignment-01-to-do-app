@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Todofy | Todo Planner</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        />
+        <link rel="stylesheet" href="./css/style.css" />
+    </head>
+    <body>
+        <header class="todo-header">
+            <h1>Todofy Task Planner</h1>
+            <h3>
+                Today is <span id="date">27 February</span> | You have
+                <span id="pending-task">2</span> Pending Tasks
+            </h3>
+        </header>
+
+        <div class="todo-container">
+            <div class="todo-list">
+                <div class="todo">
+                    <p class="todo-item">
+                        <span><i class="fas fa-bars"></i></span> Read 10 mins
+                        today
+                    </p>
+                    <div class="butons">
+                        <button class="check">
+                            <i class="fas fa-check"></i>
+                            <input type="checkbox" name="" id="" class="itemCheck">
+                        </button>
+                        <button class="trash">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="todo">
+                    <p class="todo-item">
+                        <span><i class="fas fa-bars"></i></span> Plan today's
+                        task
+                    </p>
+                    <div class="buttons">
+                        <button class="check">
+                            <i class="fas fa-check"></i>
+                            <input type="checkbox" name="" id="" class="itemCheck">
+                        </button>
+                        <button class="trash">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="todo-container">
+            <h2>Add New Task To The List</h2>
+            <form>
+                <input
+                    type="text"
+                    placeholder="add your task"
+                    class="todo-input"
+                />
+                <button type="submit" class="todo-button">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </form>
+        </div>
+
+        <script src="script-revised.js"></script>
+    </body>
+</html>
