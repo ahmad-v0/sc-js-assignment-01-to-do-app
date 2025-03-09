@@ -1,3 +1,4 @@
+// tasklist in array, fetched from database   
 const taskDataBase = [
     'Read 10 mins today', 
     "Plan today's task", 
@@ -9,6 +10,7 @@ var inputBox = document.querySelector('.todo-input');
 var taskList = document.querySelector('.todo-list');
 var inputTxt;
 
+// a function to load the tasks as per array elements fetched from database
 function loadTasks() {
     for (let i = 0; i < taskDataBase.length ; i++) {
         addNewTask(taskDataBase[i]);
@@ -29,7 +31,7 @@ inputForm.addEventListener('submit', function(event) {                  // add a
     }
 });
 
-function addNewTask(task) {                                                    // a function that when invoked, add new task to the task list
+function addNewTask(task) {                                                // a function that when invoked, add new task to the task list
     var newTask = document.createElement('div');                           // create a new div element
     newTask.classList.add('todo');                                         // add the created div in to todo class
     newTask.innerHTML = `                                                   
@@ -46,29 +48,26 @@ function addNewTask(task) {                                                    /
                     </button>
                 </div>
     `;                                                                       // html elements added to newly created div
-    taskList.appendChild(newTask);                                           // entire div is added to existing task list
-    pendingTaskCal();
+    // taskList.appendChild(newTask);                                        // entire div is added to existing task list
+    taskList.insertBefore(newTask, taskList.children[0]);                    // new task added to the top of the existing list
+    pendingTaskCal();                                                        // calculates total number of pending tasks
 }
 
-function pendingTaskCal() {                                                 // a function that when invoked, calculates the total number of pending task on task list
-    let taskOnList = document.querySelectorAll('.check');               // select all the tasks on task list
+function pendingTaskCal() {                                                  // a function that when invoked, calculates the total number of pending task on task list
+    let taskOnList = document.querySelectorAll('.check');                    // select all the tasks on task list
     document.getElementById('pending-task').innerText = taskOnList.length;      
 }
 
-document.addEventListener('click', function(event) {
+// an eventlistener to task list to check for click events
+taskList.addEventListener('click', function(event) {
     if (event.target.classList.contains('check')) {
-        let taskCehcked = event.target;
-        let checkedItem = event.target.parentNode.parentNode;
-        checkedItem.classList.add('completed');
-        taskCehcked.remove();
-        pendingTaskCal();
+        let taskCehcked = event.target;                                       // identify the clicked node
+        let checkedItem = event.target.parentNode.parentNode;                 // target the parenNode that is the task to be marked as completed
+        checkedItem.classList.add('completed');                               // changes the node status as completed  
+        taskCehcked.remove();                                                 // remove the check btn   
     }
-});
-
-document.querySelector('.todo-list').addEventListener('click', function(event) {        // select the entire to do list, add an eventlistener for click event
-    if (event.target.classList.contains('trash')) {                                     // checks if the trash icon is clicked
-        event.target.closest('.todo').remove();                                         // removes the closest todo class of the trash icon, which is the parent element
-        pendingTaskCal();
+    if (event.target.classList.contains('trash')) {                           // checks if the trash icon is clicked
+        event.target.closest('.todo').remove();                               // removes the closest todo class of the trash icon, which is the parent element
     }
+    pendingTaskCal();                                                         // calculates the number of pending tasks
 });
-
