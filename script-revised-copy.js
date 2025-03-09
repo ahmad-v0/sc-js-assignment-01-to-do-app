@@ -48,7 +48,6 @@ function addNewTask(task) {                                                // a 
                     </button>
                 </div>
     `;                                                                       // html elements added to newly created div
-    // taskList.appendChild(newTask);                                        // entire div is added to existing task list
     taskList.insertBefore(newTask, taskList.children[0]);                    // new task added to the top of the existing list
     pendingTaskCal();                                                        // calculates total number of pending tasks
 }
