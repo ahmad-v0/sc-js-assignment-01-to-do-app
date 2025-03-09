@@ -8,7 +8,6 @@ var inputForm = document.querySelector('form');
 var inputBox = document.querySelector('.todo-input');
 var taskList = document.querySelector('.todo-list');
 var inputTxt;
-var checkboxes;
 
 function loadTasks() {
     for (let i = 0; i < taskDataBase.length ; i++) {
@@ -48,12 +47,7 @@ function addNewTask(task) {                                                    /
                 </div>
     `;                                                                       // html elements added to newly created div
     taskList.appendChild(newTask);                                           // entire div is added to existing task list
-    // var taskOnTop = document.querySelector('todo');
-    // taskList.insertBefore(taskOnTop);
     pendingTaskCal();
-    checkboxes = document.querySelectorAll('.check');
-    console.log(checkboxes.length);
-    return checkboxes;
 }
 
 function pendingTaskCal() {                                                 // a function that when invoked, calculates the total number of pending task on task list
@@ -61,17 +55,15 @@ function pendingTaskCal() {                                                 // a
     document.getElementById('pending-task').innerText = taskOnList.length;      
 }
 
-
-for (let i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].addEventListener('click', function(event) {
-        console.log('test');
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('check')) {
         let taskCehcked = event.target;
         let checkedItem = event.target.parentNode.parentNode;
         checkedItem.classList.add('completed');
         taskCehcked.remove();
         pendingTaskCal();
-    });
-}
+    }
+});
 
 document.querySelector('.todo-list').addEventListener('click', function(event) {        // select the entire to do list, add an eventlistener for click event
     if (event.target.classList.contains('trash')) {                                     // checks if the trash icon is clicked
@@ -79,20 +71,4 @@ document.querySelector('.todo-list').addEventListener('click', function(event) {
         pendingTaskCal();
     }
 });
-
-
-
-
-
-// document.addEventListener('DOMContentLoaded', function() {              // eventlistener to invoke an annonymous function once the content is loaded
-//     pendingTaskCal();                                                   // calculate the number of pending task
-// });
-
-// document.addEventListener('change', function(event) {                    // an eventlistener to catch the changes on the entire document
-//     if (event.target.classList.contains('itemCheck')) {                  // to check if the changes happened on checkboxes on tasks
-//         pendingTaskCal();
-//     };
-// });
-
-
 
