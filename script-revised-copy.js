@@ -55,7 +55,7 @@ function addNewTask(task) {                                                // a 
 
 function pendingTaskCal() {                                                  // a function that when invoked, calculates the total number of pending task on task list
     let taskOnList = document.querySelectorAll('.check');                    // select all the tasks on task list
-    document.getElementById('pending-task').innerText = taskOnList.length;      
+    document.getElementById('pending-task').innerText = taskOnList.length;
 }
 
 // an eventlistener to task list to check for click events
@@ -64,10 +64,12 @@ taskList.addEventListener('click', function(event) {
         let taskCehcked = event.target;                                       // identify the clicked node
         let checkedItem = event.target.parentNode.parentNode;                 // target the parenNode that is the task to be marked as completed
         checkedItem.classList.add('completed');                               // changes the node status as completed  
-        taskCehcked.remove();                                                 // remove the check btn   
+        taskCehcked.remove();                                                 // remove the check btn
+        pendingTaskCal();                                                         // calculates the number of pending tasks   
     }
     if (event.target.classList.contains('trash')) {                           // checks if the trash icon is clicked
         event.target.closest('.todo').remove();                               // removes the closest todo class of the trash icon, which is the parent element
+        pendingTaskCal();                                                         // calculates the number of pending tasks
     }
-    pendingTaskCal();                                                         // calculates the number of pending tasks
+    
 });
