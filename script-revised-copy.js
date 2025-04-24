@@ -70,5 +70,4 @@ taskList.addEventListener('click', function(event) {
         event.target.closest('.todo').remove();                               // removes the closest todo class of the trash icon, which is the parent element
         pendingTaskCal();                                                         // calculates the number of pending tasks
     }
-    
 });
